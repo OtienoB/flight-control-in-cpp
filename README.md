@@ -1,1 +1,2 @@
 # flight-control-in-cpp
+This program creates a FlightControl class that manages Airports and the planes within them. The FlightControl class stores a vector of Airports, allowing a user to add or remove Airports as needed. The Airport class stores a vector of planes, allowing a user to add or remove planes from a specific Airport. The main function is used to demonstrate the functionality of the FlightControl and Airport classes.
