@@ -1,0 +1,82 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Airport class
+class Airport {
+    public:
+        string airportName;
+        vector<string> planes;
+
+        Airport(string name) {
+            airportName = name;
+            planes = {};
+        }
+
+        void addPlane(string plane) {
+            planes.push_back(plane);
+        }
+
+        void removePlane(string plane) {
+            for (int i=0; i<planes.size(); ++i) {
+                if (planes[i] == plane) {
+                    planes.erase(planes.begin() + i);
+                }
+            }
+        }
+};
+
+// Flight Control class
+class FlightControl {
+    public:
+        vector<Airport> airports;
+
+        FlightControl() {
+            airports = {};
+        }
+
+        void addAirport(Airport airport) {
+            airports.push_back(airport);
+        }
+
+        void addPlane(string airportName, string plane) {
+            for (int i=0; i<airports.size(); ++i) {
+                if (airports[i].airportName == airportName) {
+                    airports[i].addPlane(plane);
+                }
+            }
+        }
+
+        void removePlane(string airportName, string plane) {
+            for (int i=0; i<airports.size(); ++i) {
+                if (airports[i].airportName == airportName) {
+                    airports[i].removePlane(plane);
+                }
+            }
+        }
+};
+
+// Main function
+int main() {
+    FlightControl fc;
+    Airport a1("Airport1");
+    Airport a2("Airport2");
+    fc.addAirport(a1);
+    fc.addAirport(a2);
+    fc.addPlane("Airport1", "Plane1");
+    fc.addPlane("Airport2", "Plane2");
+    fc.removePlane("Airport1", "Plane1");
+    
+    cout << "Airport1 planes:";
+    for (auto& plane : a1.planes)
+        cout << ' ' << plane;
+    cout << endl;
+    
+    cout << "Airport2 planes:";
+    for (auto& plane : a2.planes)
+        cout << ' ' << plane;
+    cout << endl;
+    return 0;
+}
